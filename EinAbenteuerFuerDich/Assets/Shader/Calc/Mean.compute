@@ -1,0 +1,67 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel Mean
+
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+Texture2D<float4> Input;
+RWTexture2D<float4> Result;
+Texture2D<float> mat;
+StructuredBuffer<float2> size;
+StructuredBuffer<float2> patchSize;
+StructuredBuffer<float2> stepSize;
+
+
+
+//Mean() berechnet die Gemittelte Farbe innerhalb des patches und schreibt sie in die Texture Result
+[numthreads(8,8,1)]
+void Mean (uint3 id : SV_DispatchThreadID)
+{
+	float4 meanColor = float4(0, 0, 0, 1);
+
+	float xStart = 0;
+	float xEnd = size.x - 1;
+	float yStart = 0;
+	float yEnd = size.y - 1;
+
+	int x_reset = 0, y_reset = 0;
+	//Setze x in seine Grenzen:
+	if (id.x * stepSize.x => patchSize.x) {
+		xStart = id.x * stepSize.x - patchSize.x;
+	} 
+	else x_reset = patchSize.x - id.x * stepSize.x;
+
+	if (id.x * stepSize.x + patchSize.x < size.x) {
+		xEnd = id.x * stepSize.x + patchSize.x;
+	}
+
+	//Setze y in seine Grenzen:
+	if (id.y * stepSize.y >= patchSize.y) {
+		yStart = id.y * stepSize.y - patchSize.y;
+	} 
+	else y_reset = patchSize.y - id.y * stepSize.y;
+
+	if (id.y * stepSize.y + patchSize.y < size.y) {
+		yEnd = id.y * stepSize.y + patchSize.y;
+	}
+
+
+	//Faltung mit mat:
+	int x = x_reset, y = y_reset;
+	for (int i = xStart; i < xEnd; i++)
+	{
+		for (int j = yStart; j < yEnd; j++)
+		{
+			meanColor += Input[i, j] * mat[x, y];
+			y++;
+		}
+		y = y_reset;
+		x++;
+	}
+
+	float divider = (xEnd - xStart + 1) * (yEnd - yStart + 1);
+	meanColor /= divider;
+	Result[id.xy] = meanColor;//entsprechend der stepSize wird die Textur Result um 1/stepSize kleiner.
+}
+
+

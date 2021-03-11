@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ground
+  - obstacle
+  - collect
   layers:
   - Default
   - TransparentFX
@@ -13,14 +16,14 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - HiddenTrigger
+  - Player
+  - Obstacle
+  - Collectable
+  - Ground
+  - Interactable
+  - Touch
+  - PhysicsOnly
   - 
   - 
   - 
@@ -40,4 +43,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2219818747
+    locked: 0
+  - name: Object
+    uniqueID: 2502832317
+    locked: 0
+  - name: NPC
+    uniqueID: 957902613
+    locked: 0
+  - name: Player
+    uniqueID: 677678327
+    locked: 0
+  - name: Forground
+    uniqueID: 2903483419
+    locked: 0
+  - name: UI
+    uniqueID: 2983101871
     locked: 0

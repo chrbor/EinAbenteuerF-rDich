@@ -1,0 +1,502 @@
+fileFormatVersion: 2
+guid: ae7e6288411cca542968d5edb40ff882
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6985152024312071426
+    second: farmer1
+  - first:
+      213: 4189423638772109961
+    second: worker_m
+  - first:
+      213: -4367766968771743871
+    second: dude1
+  - first:
+      213: -197942630232610886
+    second: dude2
+  - first:
+      213: -7092968299223681891
+    second: farmer2
+  - first:
+      213: 1750920878318644548
+    second: child
+  - first:
+      213: 3197887800985872830
+    second: worker2
+  - first:
+      213: 7526658560763328307
+    second: women
+  - first:
+      213: -464095585965569113
+    second: hat1
+  - first:
+      213: 7022129979990511902
+    second: Titelloses 29_20210213025431_9
+  - first:
+      213: -1403259079768125974
+    second: beard1
+  - first:
+      213: 429794438567873888
+    second: hat2
+  - first:
+      213: -5732596529254199126
+    second: hat3
+  - first:
+      213: -7130551827515888121
+    second: glasses
+  - first:
+      213: 1805083066945063171
+    second: hat4
+  - first:
+      213: -1139728947447928618
+    second: hat5
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: farmer1
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 1267
+        width: 239
+        height: 542
+      alignment: 9
+      pivot: {x: 0.5, y: 0.0437773}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 205c837d1ce30f060800000000000000
+      internalID: 6985152024312071426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: worker_m
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 1273
+        width: 239
+        height: 532
+      alignment: 9
+      pivot: {x: 0.49999988, y: 0.055410285}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 982d2aa5a92d32a30800000000000000
+      internalID: 4189423638772109961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dude1
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 1279
+        width: 241
+        height: 537
+      alignment: 9
+      pivot: {x: 0.4888478, y: 0.049539633}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18feca455139263c0800000000000000
+      internalID: -4367766968771743871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dude2
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 1300
+        width: 240
+        height: 437
+      alignment: 9
+      pivot: {x: 0.5111994, y: 0.075619064}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab7241ff934c04df0800000000000000
+      internalID: -197942630232610886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: farmer2
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 503
+        width: 237
+        height: 505
+      alignment: 9
+      pivot: {x: 0.5000001, y: 0.06889588}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d947aa979e6b09d90800000000000000
+      internalID: -7092968299223681891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: child
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 529
+        width: 241
+        height: 362
+      alignment: 9
+      pivot: {x: 0.51115245, y: 0.06936595}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44d6ff513458c4810800000000000000
+      internalID: 1750920878318644548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: worker2
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 539
+        width: 240
+        height: 502
+      alignment: 9
+      pivot: {x: 0.50000024, y: 0.07167375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb96159030e216c20800000000000000
+      internalID: 3197887800985872830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: women
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 514
+        width: 237
+        height: 560
+      alignment: 9
+      pivot: {x: 0.50000054, y: 0.063241035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33773f34510147860800000000000000
+      internalID: 7526658560763328307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hat1
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 223
+        width: 317
+        height: 144
+      alignment: 9
+      pivot: {x: 0.5000002, y: 0.27602068}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ab02b006833f89f0800000000000000
+      internalID: -464095585965569113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beard1
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 337
+        width: 166
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aed449e3d4f968ce0800000000000000
+      internalID: -1403259079768125974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hat2
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 258
+        width: 307
+        height: 162
+      alignment: 9
+      pivot: {x: 0.5, y: 0.35068068}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06dc645c3cfe6f500800000000000000
+      internalID: 429794438567873888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hat3
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 253
+        width: 271
+        height: 168
+      alignment: 9
+      pivot: {x: 0.4305753, y: 0.4040086}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa09a2944d9b170b0800000000000000
+      internalID: -5732596529254199126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: glasses
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 128
+        width: 211
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70e276464e03b0d90800000000000000
+      internalID: -7130551827515888121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hat4
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 15
+        width: 268
+        height: 143
+      alignment: 9
+      pivot: {x: 0.48997122, y: 0.25565976}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30945535c71fc0910800000000000000
+      internalID: 1805083066945063171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hat5
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 79
+        width: 284
+        height: 129
+      alignment: 9
+      pivot: {x: 0.4242891, y: 0.2708124}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d8e2239f8ede20f0800000000000000
+      internalID: -1139728947447928618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
