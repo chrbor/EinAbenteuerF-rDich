@@ -68,9 +68,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -2075148549
+  m_SortingLayer: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: -4716903333419574401, guid: dc57e02ae00120a44be57c25f4973221,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -111,6 +111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2790734671922018121}
+  - component: {fileID: 5166312269658715087}
   m_Layer: 0
   m_Name: mouse
   m_TagString: Untagged
@@ -127,9 +128,22 @@ Transform:
   m_GameObject: {fileID: 5930078517995825959}
   m_LocalRotation: {x: -0, y: -0, z: -0.0011959878, w: 0.9999993}
   m_LocalPosition: {x: -2.68, y: -4.1, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6698673898538949680}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.13700001}
+--- !u!114 &5166312269658715087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5930078517995825959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e1a9142d1a513499a535ed48dc8a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.3

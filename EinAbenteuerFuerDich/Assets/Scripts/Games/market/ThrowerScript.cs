@@ -18,6 +18,7 @@ public class ThrowerScript : MonoBehaviour
 
     private void Start()
     {
+        movingSpeed *= 1 + .25f * difficulty;
         stepSpeed = movingSpeed * Time.fixedDeltaTime;
     }
     public void SetParams(float _maxRunRange, Vector2 _falltimeRange, float _y_end)

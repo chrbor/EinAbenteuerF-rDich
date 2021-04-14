@@ -50,6 +50,15 @@ TextureImporter:
   - first:
       213: 6451625050712706476
     second: text
+  - first:
+      213: -5413597500971388885
+    second: line1
+  - first:
+      213: -808836634840207983
+    second: line2
+  - first:
+      213: 5651157872376077341
+    second: line3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -178,7 +187,7 @@ TextureImporter:
         width: 289
         height: 169
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -199,7 +208,7 @@ TextureImporter:
         width: 687
         height: 441
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 86, y: 74, z: 93, w: 72}
       outline: []
       physicsShape: []
@@ -220,7 +229,7 @@ TextureImporter:
         width: 481
         height: 113
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -241,7 +250,7 @@ TextureImporter:
         width: 407
         height: 511
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -262,7 +271,7 @@ TextureImporter:
         width: 285
         height: 137
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -283,7 +292,7 @@ TextureImporter:
         width: 376
         height: 170
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -291,6 +300,69 @@ TextureImporter:
       bones: []
       spriteID: 9406d5a0fd6d219c0800000000000000
       internalID: -3957864869065301943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: line1
+      rect:
+        serializedVersion: 2
+        x: 1176
+        y: 1044
+        width: 111
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2078ad51c90fd4b0800000000000000
+      internalID: -5413597500971388885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: line2
+      rect:
+        serializedVersion: 2
+        x: 1353
+        y: 1079
+        width: 102
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19de603bd5f66c4f0800000000000000
+      internalID: -808836634840207983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: line3
+      rect:
+        serializedVersion: 2
+        x: 1346
+        y: 1042
+        width: 108
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1cd0a0d422fc6e40800000000000000
+      internalID: 5651157872376077341
       vertices: []
       indices: 
       edges: []

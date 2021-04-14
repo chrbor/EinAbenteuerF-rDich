@@ -11,21 +11,35 @@ public class FollowScript : MonoBehaviour
     private bool isMoving;
     private Vector3 diff, start;
 
+    [Header("Kleidung:")]
+    public AccessoirSet accessoir;
+
     Animator anim;
     PlayerScript pScript;
     bool preOnGround = true;
-    Collider2D col;
+    bool onGround;
+
+    private void Awake()
+    {
+        companion = gameObject;
+        companionAccessoir = accessoir;   
+        anim = transform.GetChild(0).GetComponent<Animator>();
+    }
 
     private void Start()
     {
-        anim = transform.GetChild(0).GetComponent<Animator>();
         pScript = player.GetComponent<PlayerScript>();
-        col = GetComponent<Collider2D>();
+    }
+
+    private void OnEnable()
+    {
+        isMoving = false;
+        prePos.Clear();
+        diff = Vector3.zero;        
     }
 
     void FixedUpdate()
     {
-
         if(prePos.Count < arrayLength)
         {
             if(!isMoving && (transform.position - player.transform.position).sqrMagnitude > thresh_start)
@@ -39,7 +53,7 @@ public class FollowScript : MonoBehaviour
             transform.position += diff;
             prePos.Add(player.transform.position);
         }
-        else if(!col.IsTouchingLayers() || (prePos[0] - player.transform.position).sqrMagnitude > thresh_stop)
+        else if(!onGround || (prePos[0] - player.transform.position).sqrMagnitude > thresh_stop)
         {
             transform.position = prePos[0];
             prePos.RemoveAt(0);
@@ -62,8 +76,12 @@ public class FollowScript : MonoBehaviour
             anim.SetBool("moving", true);
         }*/
 
-        if (!col.IsTouchingLayers() && preOnGround) { anim.SetTrigger("jump"); preOnGround = false; }
-        anim.SetBool("inAir", !col.IsTouchingLayers());
-        preOnGround |= col.IsTouchingLayers();
+        if (!onGround && preOnGround) { anim.SetTrigger("jump"); preOnGround = false; }
+        anim.SetBool("inAir", !onGround);
+        preOnGround |= onGround;
     }
+
+    private void OnTriggerStay2D(Collider2D other) => onGround |= other.gameObject.layer == 12;
+    private void OnTriggerExit2D(Collider2D other) => onGround &= other.gameObject.layer != 12;
+    
 }

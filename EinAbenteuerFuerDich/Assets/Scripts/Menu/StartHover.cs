@@ -9,9 +9,9 @@ public class StartHover : MonoBehaviour
     [Range(0,1)]
     public float offset;
     // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         anim = GetComponent<Animator>();
-        anim.Play("hover",0,offset);
+        anim.Play("hover",0,offset);        
     }
 }

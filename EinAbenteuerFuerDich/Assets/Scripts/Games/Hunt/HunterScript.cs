@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static GameManager;
 using static CameraScript;
 
@@ -20,20 +21,40 @@ public class HunterScript : MonoBehaviour
     [Header("Huntval:")]
     public float gainPerSec;
     public float lossPerObstacle;
-    private bool addingLoss;
+    private bool eggBlock, lossBlock;
     public HuntScript prey;
     private float gainPerStep;
 
-    // Start is called before the first frame update
-    void Start()
+    private Text scoreText;
+
+    private Vibration vib;
+
+    private void Awake()
     {
+        player = gameObject;
+        scoreText = canvas.transform.GetChild(2).GetChild(1).GetComponent<Text>();
+        scoreText.text = "0/" + prey.eggGoal;
         rb = GetComponent<Rigidbody2D>();
         anim = transform.GetChild(0).GetComponent<Animator>();
         anim.SetBool("moving", false);
+
+        //Setup der Vibration:
+        vib = new Vibration();
+        vib.SetVibrationEffect(new long[30] { 1, 10, 1, 10, 1, 10, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2 });
+    }
+
+    void Start()
+    {
+
         Input.gyro.enabled = true;
 
         jumpReady = true;
         gainPerStep = gainPerSec * Time.deltaTime;
+    }
+
+    private void OnDestroy()
+    {
+        vib.DestroyVibration();
     }
 
     private void Update()
@@ -51,16 +72,17 @@ public class HunterScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (!runGame) return;
+
         // Falle zurück
         switch (other.tag)
         {
             case "obstacle":
+                vib.Vibrate(0);
                 StartCoroutine(AddLoss());
                 break;
             case "collect":
-                prey.eggCount++;
-                Debug.Log("egg collected");
-                Destroy(other.gameObject);
+                StartCoroutine(AddEgg(other.gameObject));
                 break;
             default:
                 //Reach goal:
@@ -68,14 +90,25 @@ public class HunterScript : MonoBehaviour
         }         
     }
 
+    IEnumerator AddEgg(GameObject egg)
+    {
+        if (eggBlock) yield break;
+        eggBlock = true;
+        prey.eggCount++;
+        scoreText.text = prey.eggCount + "/" + prey.eggGoal;
+        Destroy(egg);
+        yield return new WaitForSeconds(.2f);
+        eggBlock = false;
+    }
+
     IEnumerator AddLoss()
     {
-        if (addingLoss) yield break;
-        addingLoss = true;
+        if (lossBlock) yield break;
+        lossBlock = true;
         StartCoroutine(cScript.Shake());
         float stepLoss = lossPerObstacle / 50;
         for(int i = 0; i < 50; i++) { prey.preyDist += stepLoss; yield return new WaitForFixedUpdate(); }
-        addingLoss = false;
+        lossBlock = false;
         yield break;
     }
 

@@ -14,9 +14,15 @@ public class FallObject : MonoBehaviour
     private AudioSource aSrc;
     public AudioClip inCartClip, splashClip;
 
+    Vibration vib;
+
     private void Start()
     {
         aSrc = GetComponent<AudioSource>();
+
+        //Setup der Vibration:
+        vib = new Vibration();
+        vib.SetVibrationEffect(new long[54] { 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 10, 1, 10, 1, 10, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2 });
     }
 
     /// <summary>
@@ -52,9 +58,14 @@ public class FallObject : MonoBehaviour
         lives--;
         aSrc.panStereo = transform.position.x / maxRange;
         aSrc.clip = splashClip;
+        vib.Vibrate(0);
         aSrc.Play();
         StartCoroutine(cScript.Shake());
+        inCart = true;
+        GetComponent<Collider2D>().enabled = false;
         yield return new WaitWhile(()=>aSrc.isPlaying);
+        vib.DestroyVibration();
+        yield return new WaitUntil(() => reset);
         Destroy(gameObject);
 
         yield break;
@@ -85,7 +96,9 @@ public class FallObject : MonoBehaviour
         for (int i = 0; i < 25; i++) { transform.localPosition -= step; yield return new WaitForFixedUpdate(); }
         inCart = true;
         //yield return new WaitWhile(()=>aSrc.isPlaying);
-        Destroy(this);
+        yield return new WaitUntil(() => reset);
+        vib.DestroyVibration();
+        Destroy(gameObject);
         yield break;
     }
 }

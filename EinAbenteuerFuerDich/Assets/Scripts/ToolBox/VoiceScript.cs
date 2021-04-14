@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using B83.MathHelpers;
+using static LoadSave;
 
 public class VoiceScript : MonoBehaviour
 {
-    AudioSource aSrc;
-    AudioClip clip_Name_normal, clip_Name_question;
+    static AudioSource aSrc;
     public AnimationCurve questionPitch;
     public AnimationCurve ShoutPitch;
     public AnimationCurve ExplainPitch;
@@ -15,6 +15,8 @@ public class VoiceScript : MonoBehaviour
     static int sampleLength = 5;
     public static bool fetching { get; private set; }
     public static bool runFetch;
+    public static bool pauseFetching;
+    public static int fetchedDataLength { get; private set; }
 
     public static class Signal
     {
@@ -31,14 +33,15 @@ public class VoiceScript : MonoBehaviour
     {
         Signal.frequency = new float[85];
 
-        aSrc = Camera.main.GetComponent<AudioSource>();
-
+        aSrc = GetComponent<AudioSource>();
+        LoadSound();
+        aSrc.clip = AudioClip.Create("playerName", GameManager.playerCry.data.Length, 1, 44100, false);
+        aSrc.clip.SetData(GameManager.playerCry.data, 0);
         //StartCoroutine(ReportFrequencies());
     }
 
     public void PlayName()
     {
-        aSrc.clip = clip_Name_normal;
         aSrc.Play();
     }
 
@@ -61,8 +64,9 @@ public class VoiceScript : MonoBehaviour
 
     IEnumerator PlayPitch(AnimationCurve curve)
     {
-        Debug.Log("Question");
-        aSrc.clip = clip_Name_normal;
+        if (aSrc.clip == null) yield break;
+        Debug.Log("PlayName");
+        //aSrc.clip = clip_Name;
         float timeCount = 0;
         aSrc.PlayDelayed(0.5f);
         yield return new WaitForSeconds(0.5f);
@@ -73,7 +77,6 @@ public class VoiceScript : MonoBehaviour
             timeCount += Time.fixedDeltaTime;
         }
         aSrc.pitch = 1;
-        Debug.Log("question ended");
     }
 
 
@@ -89,8 +92,10 @@ public class VoiceScript : MonoBehaviour
     /// <param name="freq">Die frequenz, mit der gesampelt wird</param>
     /// <param name="sampleRate">Schrittgröße in Sekunden, mit der gesampelt wird</param>
     /// <returns></returns>
-    IEnumerator GetSoundSample(int freq = 44100, float sampleRate = 0.2f)
+    public static IEnumerator GetSoundSample(int freq = 44100, float sampleRate = 0.2f, float triggerThresh = 1e-5f)
     {
+        if (aSrc == null) yield break;
+
         if (runFetch)
         {
             runFetch = false;
@@ -117,6 +122,7 @@ public class VoiceScript : MonoBehaviour
         fetching = true;
         while (!(voiceHasStarted && voiceHasStopped) || !runFetch)
         {
+            yield return new WaitWhile(() => pauseFetching);
             yield return new WaitForSeconds(sampleRate);
             aSrc.clip.GetData(sample, ptr);
 
@@ -145,8 +151,8 @@ public class VoiceScript : MonoBehaviour
             }
 
             //Auswertung:
-            Debug.Log("sum: " + sum + ", maxA: " + maxAmp);
-            if (sum > 1e-4f)//wenn spektrale leistung über den grenzwert geht:
+            //Debug.Log("sum: " + sum + ", maxA: " + maxAmp);
+            if (sum > triggerThresh)//wenn spektrale leistung über den grenzwert geht:
             {
                 if (!voiceHasStarted)//wahrscheinlich überlappend, daher wird der Start um einen Durchgang zurückverschoben
                 {
@@ -171,6 +177,7 @@ public class VoiceScript : MonoBehaviour
         }
         Microphone.End(null);
         //end -= (int)(sampleRate * 2 * freq);
+
         Debug.Log("stop");
         fetching = false;
         if (!runFetch) yield break;
@@ -220,16 +227,16 @@ public class VoiceScript : MonoBehaviour
         if (start == -1) start = 0;
         if (end == -1) end = tmp.Length;
 
-        float[] data = new float[end - start];
-        for (int i = 0; i < end - start; i++) data[i] = tmp[start + i];
+        fetchedDataLength = end - start;
+        float[] data = new float[fetchedDataLength];
+        for (int i = 0; i < fetchedDataLength; i++) data[i] = tmp[start + i];
         Debug.Log("genaue Position ermittelt: start: " + start + ", ende: " + end);
 
-        clip_Name_normal = AudioClip.Create("name_normal", data.Length, 1, freq, false);
-        clip_Name_normal.SetData(data, 0);
+        aSrc.clip = AudioClip.Create("name_normal", data.Length, 1, freq, false);
+        aSrc.clip.SetData(data, 0);
         Debug.Log("name_normal created");
 
-        aSrc.clip = clip_Name_normal;
-        aSrc.Play();
+
     }
 
     /// <summary>
@@ -312,7 +319,7 @@ public class VoiceScript : MonoBehaviour
             Signal.dominantFrequency = maxFrequency != -1 ? ToneLookUp.IndexToName[maxFrequency] : "";
             Signal.amplitude = maxAmp;
             Signal.length = maxFrequency != -1 ? Signal.length + sampleRate : 0;
-            if(maxFrequency != -1) Debug.Log("freq: " + Signal.dominantFrequency + ", freqrange: " + ToneLookUp.IndexToRange[ToneLookUp.NameToIndex[Signal.dominantFrequency]]);
+            //if(maxFrequency != -1) Debug.Log("freq: " + Signal.dominantFrequency + ", freqrange: " + ToneLookUp.IndexToRange[ToneLookUp.NameToIndex[Signal.dominantFrequency]]);
         }
         Microphone.End(null);
 
@@ -327,7 +334,7 @@ public class VoiceScript : MonoBehaviour
     /// <param name="freq"></param>
     /// <param name="sampleRate"></param>
     /// <returns></returns>
-    public static IEnumerator FetchAmpOnly(int freq = 16000, float sampleRate = 0.02f)
+    public static IEnumerator FetchAmpOnly(int freq = 16000, float sampleRate = 0.02f, int fraction = 1)
     {
         if (runFetch)
         {
@@ -336,7 +343,7 @@ public class VoiceScript : MonoBehaviour
         }
         runFetch = true;
 
-        int sampleCount = (int)(freq * sampleRate);
+        int sampleCount = (int)(freq / fraction * sampleRate);
         float[] sample = new float[sampleCount];
         float maxAmp;
 
@@ -351,7 +358,7 @@ public class VoiceScript : MonoBehaviour
             maxAmp = 0;
             for (int i = 0; i < sampleCount; i++)
                 maxAmp = maxAmp < Mathf.Abs(sample[i]) ? Mathf.Abs(sample[i]) : maxAmp;
-            Signal.amplitude = maxAmp;
+            if(Signal.amplitude < maxAmp) Signal.amplitude = maxAmp;
         }
 
             yield break;

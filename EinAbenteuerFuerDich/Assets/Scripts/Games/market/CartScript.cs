@@ -1,14 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using static MarketGame;
 using static GameManager;
 
 public class CartScript : MonoBehaviour
 {
-    public Text text;
-
     public float change_thresh;
     public float vel_thresh = 0.05f;
     public float damp_thresh = 0.1f;

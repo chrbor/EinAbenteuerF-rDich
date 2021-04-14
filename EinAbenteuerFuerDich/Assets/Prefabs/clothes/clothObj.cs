@@ -42,7 +42,7 @@ public class clothObj : ScriptableObject
         SpriteRenderer spriteRenderer = obj_ref.AddComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprite;
         spriteRenderer.sortingLayerID = parent.GetComponent<SpriteRenderer>().sortingLayerID;
-        spriteRenderer.sortingOrder = 3 + parent.childCount;
+        spriteRenderer.sortingOrder = 20 + parent.childCount;
 
         obj_ref.transform.parent = parent;
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using static PotatoGame;
 using static GameManager;
@@ -52,7 +53,7 @@ public class PotstoScript : MonoBehaviour
     {
         GetComponent<Collider2D>().enabled = false;
         GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, sprites.Length)];
-        transform.parent = player.transform.GetChild(0).GetChild(0).GetChild(0);
+        transform.parent = companion.transform.GetChild(0).GetChild(0).GetChild(0);
         Vector3 startPos = transform.localPosition;
         float diff = -1.75f + Random.Range(-.1f, .1f) - startPos.x;
         float rotation = Random.Range(-10, 10);
@@ -62,7 +63,9 @@ public class PotstoScript : MonoBehaviour
             transform.Rotate(Vector3.forward, rotation);
             yield return new WaitForFixedUpdate();
         }
-        potatoGame.potatoCount++;
+
+        transform.parent = transform.parent.GetChild(2);
+        canvas.transform.GetChild(canvas.transform.childCount - 3).GetChild(1).GetChild(potatoGame.potatoCount++).GetComponent<Image>().color = Color.white;
         yield break;
     }
 }

@@ -4,7 +4,37 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 4727633781103762509
-    second: Box_0
+    second: Waste1
+  - first:
+      213: 5474786076485679181
+    second: Waste1
+  - first:
+      213: -7871530612760024436
+    second: BoxDoor2
+  - first:
+      213: 8441712382528523809
+    second: Box
+  - first:
+      213: -6281331817050215206
+    second: t_map
+  - first:
+      213: -2996856382578545496
+    second: Picture
+  - first:
+      213: 8440063894332084662
+    second: BoxDoor1
+  - first:
+      213: -8985088570444660817
+    second: Waste3
+  - first:
+      213: -1490401089116947680
+    second: Fishbone
+  - first:
+      213: 4422399727871550218
+    second: Waste2
+  - first:
+      213: -6330954139856862804
+    second: Box_9
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -50,7 +80,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -125,22 +155,211 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Box_0
+      name: Waste1
       rect:
         serializedVersion: 2
-        x: 21
-        y: 249
-        width: 543
-        height: 474
+        x: 220
+        y: 769
+        width: 196
+        height: 172
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4c93d630edeb9140800000000000000
-      internalID: 4727633781103762509
+      spriteID: d48fe2e0ee85afb40800000000000000
+      internalID: 5474786076485679181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoxDoor2
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 616
+        width: 63
+        height: 244
+      alignment: 9
+      pivot: {x: 0.52558243, y: 0.8897022}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8a63d3ec94b2c290800000000000000
+      internalID: -7871530612760024436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Box
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 321
+        width: 476
+        height: 543
+      alignment: 9
+      pivot: {x: 0.9539364, y: 0.4741185}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12e01a09facf62570800000000000000
+      internalID: 8441712382528523809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: t_map
+      rect:
+        serializedVersion: 2
+        x: 1292
+        y: 759
+        width: 270
+        height: 253
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adcec580ef934d8a0800000000000000
+      internalID: -6281331817050215206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Picture
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 403
+        width: 337
+        height: 265
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ac2b818ff60966d0800000000000000
+      internalID: -2996856382578545496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoxDoor1
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 363
+        width: 64
+        height: 224
+      alignment: 9
+      pivot: {x: 0.55036545, y: 0.11147772}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b1934ff461212570800000000000000
+      internalID: 8440063894332084662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Waste3
+      rect:
+        serializedVersion: 2
+        x: 1592
+        y: 450
+        width: 88
+        height: 178
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faf393bdc8d8e4380800000000000000
+      internalID: -8985088570444660817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fishbone
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 46
+        width: 237
+        height: 278
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02b345e1b18015be0800000000000000
+      internalID: -1490401089116947680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Waste2
+      rect:
+        serializedVersion: 2
+        x: 1214
+        y: 159
+        width: 246
+        height: 286
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0361922f158f5d30800000000000000
+      internalID: 4422399727871550218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Box_9
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 15
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca10b8ca0cee328a0800000000000000
+      internalID: -6330954139856862804
       vertices: []
       indices: 
       edges: []

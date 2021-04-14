@@ -32,9 +32,14 @@ public class Vibration
         Debug.Log("Vibration wird nicht unterstützt!");
     }
 
-    ~Vibration()
+    public void DestroyVibration()
     {
-        Cancel();
+        //Cancel();
+
+        vibEffectClass.Dispose();
+        vibrator.Dispose();
+        currentActivity.Dispose();
+        unityPlayer.Dispose();
     }
 
     /// <summary>

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using static GameManager;
 using static CameraScript;
+using static MenuScript;
+using static BubbleScript;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PotatoGame : MonoBehaviour
 {
-    public Text text;
-
-    public AudioClip gameMusic;
+    public AudioClip gameMusic, winClip;
     public AccessoirSet[] accessoirSets;
     public Vector2[] potatoPos;
     public GameObject potatoPrefab;
@@ -35,10 +36,24 @@ public class PotatoGame : MonoBehaviour
     public float minDist;
     int vibID, vibID_current;
 
+    public GameObject pipeBubbles;
+    public Material transition;
+    public GameObject nextSeq;
+
+    Animator anim, anim_player, anim_comp;
+
     void Start()
     {
         potatoGame = this;
         realVel = velocity * Time.fixedDeltaTime;
+
+        /*
+        staticCam = true;
+        pauseMove = true;
+        runGame = true;
+        cScript.transform.rotation = Quaternion.identity;
+        StartCoroutine(RunPotatoGame());
+        //*/
 
         //Setup der Vibration:
         vib = new Vibration();
@@ -48,6 +63,11 @@ public class PotatoGame : MonoBehaviour
         vib.SetVibrationEffect(new long[2] { 1, 1 }, 0);
         vib.SetVibrationEffect(new long[2] { 5, 1 }, 0);
         vib.SetVibrationEffect(new long[2] { 10, 1 }, 0);
+    }
+
+    private void OnDestroy()
+    {
+        vib.DestroyVibration();
     }
 
     IEnumerator UpdateVibrator()
@@ -71,21 +91,232 @@ public class PotatoGame : MonoBehaviour
 
     IEnumerator RunIntroSequence()
     {
-        text.text = "spiele Sequenz ab";
+        yield return new WaitForSeconds(.1f);
+        if (pauseGame) yield break;
+        staticCam = true;
+        pauseMove = true;
+        runGame = true;
+        cScript.transform.rotation = Quaternion.identity;
+
+        yield return new WaitForSeconds(.1f); 
+        player.GetComponent<PlayerScript>().enabled = false;
+        yield return new WaitForSeconds(.1f);
+        anim = GetComponent<Animator>();
+        anim_player = player.transform.GetChild(0).GetComponent<Animator>();
+        anim_comp = companion.transform.GetChild(0).GetComponent<Animator>();
+        GameObject farmer = transform.GetChild(1).gameObject;
+        Animator anim_farmer = farmer.transform.GetChild(0).GetComponent<Animator>();
+        anim_player.SetBool("inAir", false);
+
+        //Nehme Liste raus:
+        StartCoroutine(TasklistScript.SetTaskList(false));
+
+        cScript.offset = new Vector2(0, 3);
+        cScript.target = farmer;
+        StartCoroutine(cScript.SetZoom(8, 2));
+        StartCoroutine(cScript.SetRotation(rotTime: 2));
+
+        anim_farmer.Play("Squeesh");
+        yield return new WaitForSeconds(1);
+        anim_farmer.Play("lookAngry");
+        yield return new WaitForSeconds(1);
+
+        speachBubble.Say("Hey!!!\nIhr da!", Bubbles.Shouting, fontSize: 35);
+        yield return new WaitForSeconds(.2f);
+        anim_player.Play("JumpScare");
+        yield return new WaitForSeconds(.1f);
+        anim_comp.Play("JumpScare");
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+
+        //player und companion bewegen sich vor den bauern:
+        anim_comp.SetBool("moving", true);
+        anim_comp.SetTrigger("startMove");
+        StartCoroutine(MoveCompanion());
+
+        anim_player.SetBool("moving", true);
+        anim_player.SetTrigger("startMove");
+        float moveSpeed = 0.05f  * Mathf.Sign(235 - player.transform.position.x);
+        while(Mathf.Abs(player.transform.position.x - 235 ) > Mathf.Abs(moveSpeed) )
+        {
+            player.transform.position += Vector3.right * moveSpeed;
+            yield return new WaitForFixedUpdate();
+        }
+        anim_player.SetBool("moving", false);
+        anim_comp.SetBool("moving", false);
+        yield return new WaitForSeconds(1f);
+
+        speachBubble.Say("Habt ihr meine\nKartoffeln geklaut?", Bubbles.Shouting, target: farmer);
+        anim_comp.Play("lookScared");
+        anim_player.Play("lookSad");
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+        speachBubble.Say("Meine schöne\nKartoffelernte ist\nwie vom Erdboden\nverschluckt", Bubbles.Shouting, target: farmer);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+        anim_farmer.Play("lookFurious");
+        speachBubble.Say("Ihr habt doch\nnichts damit\nzu tun", Bubbles.Shouting, target: farmer);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+        speachBubble.Say("ODER???", Bubbles.Shouting, fontSize: 35);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+
+        anim_player.Play("Squeesh");
+        player.GetComponent<VoiceScript>().PlayQuestion();
+        yield return new WaitForSeconds(.5f);
+        anim_player.Play("lookSad");
+        yield return new WaitForSeconds(1);
+
+        anim_farmer.Play("lookPuzzled");
+        speachBubble.Say("Wie war das?\nIhr seit auch auf\nder Suche nach\nKartoffeln?", Bubbles.Normal, target: farmer);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+        anim.Play("potatoHeist1");
+        anim_farmer.Play("lookAnnoyed");
+        speachBubble.Say("Nun, hier werdet\nihr keine finden!", Bubbles.Normal, target: farmer);
+        speachBubble.Say("Die wenigen\nKartoffeln, die übrig\nsind reichen kaum\nnoch für mein Mittag!", Bubbles.Normal, target: farmer);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+        anim_comp.Play("lookSad");
+        anim_farmer.Play("lookFocused");
+        yield return new WaitForSeconds(2);
+        anim_farmer.Play("Squeesh");
+        GameObject bulb = transform.GetChild(2).gameObject;
+        bulb.SetActive(true);
+        bulb.transform.position = farmer.transform.position + Vector3.up;
+        bulb.GetComponent<Animator>().Play("Idea");
+        yield return new WaitForSeconds(1);
+        bulb.SetActive(false);
+
+        anim_farmer.Play("lookNormal");
+        speachBubble.Say("Ich habe eine\nIdee!", Bubbles.Normal, target: farmer);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+        anim.Play("potatoHeist2");
+        yield return new WaitForSeconds(1);
+
+        speachBubble.Say("Wenn ihr meine\nKartoffeln\nwiederfindet,", Bubbles.Normal, target: farmer);
+        speachBubble.Say("Dann gebe ich\neuch ein paar\nKartoffeln ab", Bubbles.Normal, target: farmer);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+        anim_comp.SetTrigger("blink");
+        speachBubble.Say("Was haltet\nihr davon?", Bubbles.Normal, target: farmer);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+
+        anim_player.Play("Squeesh");
+        player.GetComponent<VoiceScript>().PlayShout();
+        yield return new WaitForSeconds(1);
+
+        anim_comp.Play("lookPuzzled");
+        speachBubble.Say("die Kartoffeln\nwurden also\ngeklaut?", Bubbles.Normal, target: companion);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+        anim_farmer.SetTrigger("blink");
+        yield return new WaitForSeconds(1);
+        speachBubble.Say("Ähm,\nja schon...", Bubbles.Normal, target: farmer);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
 
         //Verkleide den Spieler und dessen Companion zu Detektive:
-        Transform parent_playerAcc = player.transform.GetChild(0).GetChild(0).GetChild(0);
-        //Transform parent_companionAcc = companion.transform.GetChild(0).GetChild(0).GetChild(0);
+        Transform parent_companionAcc = companion.transform.GetChild(0).GetChild(0).GetChild(0);
+        manager.ChangeClothes(accessoirSets[0], accessoirSets[1]);
+        yield return new WaitForSeconds(2.25f);
 
-        StartCoroutine(clothObj.DestroyCloths(parent_playerAcc));
+        //Füge Wasserpfeife- Blubberblasen hinzu:
+        Instantiate(pipeBubbles, parent_companionAcc.GetChild(1)).transform.localPosition = new Vector3(.5f, -.5f);
+
+        anim_comp.Play("lookFocused");
+        speachBubble.Say("Gehe ich recht in\nder Annahme, dass Sie uns\nals Privatdetektive\nanheuern wollen?", Bubbles.Normal, target: companion);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+
+        anim_farmer.SetTrigger("Blink");
         yield return new WaitForSeconds(.2f);
-        //StartCoroutine(clothObj.DestroyCloths(parent_companionAcc));
-        yield return new WaitForSeconds(.9f);
-        //Füge Dektektivkleidung hinzu:
-        foreach (var cloth in accessoirSets[0].accessoirs) { StartCoroutine(cloth.CreateCloth(parent_playerAcc)); yield return new WaitForFixedUpdate(); }
+        anim_farmer.SetTrigger("blink");
+        speachBubble.Say("...Bitte was?", Bubbles.Normal, target: farmer);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+        anim_comp.Play("lookPuzzled");
+        yield return new WaitForSeconds(1);
+        speachBubble.Say("...Der Fall ist schwer,\naber wir sind die besten\nauf unserem Gebiet", Bubbles.Normal, target: companion);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+
+        anim_player.Play("lookHappy");
+        player.GetComponent<VoiceScript>().PlayShout();
+        yield return new WaitForSeconds(1);
+
+        speachBubble.Say("Wir kümmern uns darum!", Bubbles.Normal, target: companion);
+        speachBubble.Say("Betrachten sie\nden Fall als so gut\nwie gelöst.", Bubbles.Normal, target: companion);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+
+        anim_farmer.SetTrigger("blink");
         yield return new WaitForSeconds(.2f);
-        //foreach (var cloth in companionAccessoir.accessoirs) StartCoroutine(cloth.CreateCloth(parent_companionAcc));
-        yield return new WaitForSeconds(.9f);
+        anim_farmer.SetTrigger("blink");
+        yield return new WaitForSeconds(.2f);
+        anim_farmer.SetTrigger("blink");
+        speachBubble.Say("...Nun, falls ihr die\nKartoffeln findet\ndann bringt sie mir\nbitte zum Lagerhaus", Bubbles.Normal, target: farmer);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+
+        //Player und Companion bewegen sich weg:
+        cScript.target = player;
+        cScript.offset = Vector2.up * 2;
+        cScript.strength = .05f;
+
+        player.transform.localScale = new Vector3(-1, 1, 1);
+        companion.transform.localScale = new Vector3(-1, 1, 1);
+        Vector3 step = Vector3.left * .05f;
+        anim_player.SetBool("moving", true);
+        anim_player.SetTrigger("startMove");
+        anim_comp.SetBool("moving", true);
+        anim_comp.SetTrigger("startMove");
+        for (float count = 0; count < 4; count += Time.fixedDeltaTime)
+        {
+            player.transform.position += step;
+            companion.transform.position += step;
+            yield return new WaitForFixedUpdate();
+        }
+        anim_player.SetBool("moving", false);
+
+        yield return new WaitForSeconds(1);
+        anim_comp.Play("lookFocused");
+        speachBubble.Say("...Hhhmmm...\nalle Spuren verlaufen\nim Sand.", Bubbles.Normal, target: companion);
+        speachBubble.Say("Ich schätze,\nda müssen wir etwas\ntiefer graben", Bubbles.Normal, target: companion);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+
+        anim_comp.Play("Squeesh");
+        bulb.SetActive(true);
+        bulb.transform.position = companion.transform.position;
+        bulb.GetComponent<Animator>().Play("Idea");
+        yield return new WaitForSeconds(1);
+        bulb.SetActive(false);
+
+        speachBubble.Say("In solchen Momenten\nverlässt sich der\nDetektiv", Bubbles.Normal, target: companion);
+        speachBubble.Say("immer auf seinen\nsiebten Sinn!", Bubbles.Normal, target: companion);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+
+        anim_player.Play("lookSad");
+        player.GetComponent<VoiceScript>().PlayQuestion();
+        yield return new WaitForSeconds(1);
+
+        anim_comp.Play("lookHappy");
+        speachBubble.Say("Laufe einfach\nüber das Feld\nund grabe dort", Bubbles.Normal, target: companion);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+        anim_player.Play("lookAnnoyed");
+        speachBubble.Say("wo dein Detektiv-\nSinn am stärksten\nausschlägt", Bubbles.Normal, target: companion);
+        speachBubble.Say("mache mit dem\nHandy eine Schaufel-\nbewegung, um die", Bubbles.Normal, target: companion);
+        speachBubble.Say("Kartoffeln auszugraben", Bubbles.Normal, target: companion);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+        anim_comp.SetTrigger("startMove");
+        anim_comp.SetBool("moving", false);
 
         StartCoroutine(RunPotatoGame());
         yield break;
@@ -94,15 +325,28 @@ public class PotatoGame : MonoBehaviour
     IEnumerator RunPotatoGame()
     {
         //Rotiere die Camera um 90°:
-        for (float count = 0; count < 1; count += Time.fixedDeltaTime) { cScript.transform.rotation = Quaternion.Euler(0, 0, count * 90); yield return new WaitForFixedUpdate(); }
-        
-        yield return new WaitUntil(() => Input.touchCount == 0);
-        while(Input.touchCount == 0)
+        StartCoroutine(cScript.SetRotation(90));
+        StartCoroutine(cScript.SetZoom(8));
+        StartCoroutine(menu.SetMenuRotation(_isPortrait: true));
+        yield return new WaitForSeconds(1);
+
+        Input.gyro.enabled = true;
+        //yield return new WaitUntil(() => Input.gyro.gravity.x > -.4f);
+
+        //Zeige Kartoffelcounter an:
+        potatoGoal += difficulty;
+        CanvasGroup potCountSprite = canvas.transform.GetChild(canvas.transform.childCount - 3).GetChild(1).GetComponent<CanvasGroup>();
+        for (int i = 0; i < potCountSprite.transform.childCount; i++)
         {
-            text.text = Input.gyro.gravity.ToString();
-            yield return new WaitForEndOfFrame();
+            if(i >= potatoGoal) Destroy(potCountSprite.transform.GetChild(i).gameObject);
+            else potCountSprite.transform.GetChild(i).GetComponent<Image>().color = new Color(.5f, .5f, .5f, .25f);
         }
-        //yield return new WaitUntil(() => Input.touchCount != 0);
+        potCountSprite.gameObject.SetActive(true);
+        for(float count = 0; count < 1; count += Time.fixedDeltaTime)
+        {
+            potCountSprite.alpha = count;
+            yield return new WaitForFixedUpdate();
+        }
 
         //Verteile die Kartoffeln:
         foreach(var pos in potatoPos)
@@ -121,13 +365,17 @@ public class PotatoGame : MonoBehaviour
         cScript.aSrc.loop = true;
         cScript.aSrc.Play();
 
-        runGame = true;
         running_game = true;
         potatoCount = 0;
+        //*
         StartCoroutine(UpdateVibrator());
         while (runGame && potatoCount < potatoGoal)
         {
-            text.text = "kartoffeln: " + potatoCount + " von " + potatoGoal;
+            if (pauseGame)
+            {
+                StartCoroutine(cScript.SetRotation());
+                yield return new WaitUntil(() => !pauseGame);
+            }
 
             //Laufen:
             if (Input.gyro.gravity.x > -0.2f)
@@ -157,6 +405,8 @@ public class PotatoGame : MonoBehaviour
                 if (Mathf.Abs(angle) > thresh_run)
                 {
                     rb.position += Vector2.right * realVel * moveStrength;
+                    player.transform.localScale = new Vector3(Mathf.Sign(moveStrength), 1, 1);
+                    companion.transform.localScale = new Vector3(Mathf.Sign(player.transform.position.x - companion.transform.position.x), 1, 1);
                     anim.SetBool("moving", true);
                 }
                 else anim.SetBool("moving", false);
@@ -164,56 +414,145 @@ public class PotatoGame : MonoBehaviour
 
             yield return new WaitForFixedUpdate();
         }
+        StartCoroutine(cScript.SetBGM(winClip));
+        cScript.aSrc.loop = false;
 
-        if(potatoCount >= potatoGoal)
-        {
-            text.text = "You win";
-        }
-        else
-        {
-            text.text = "You lose";
-        }
-        cScript.aSrc.Stop();
+        progress.potatoDone = true;
+        LoadSave.SaveProgress();
 
-        //Clear Game:
+
+        //Clear Game:       
         vib.Cancel();
-        yield return new WaitUntil(() => Input.touchCount == 0);
-        yield return new WaitUntil(() => Input.touchCount > 0);
-        //Rotiere die Camera um 90°:
-        for (float count = 1; count > 0; count -= Time.fixedDeltaTime) { cScript.transform.rotation = Quaternion.Euler(0, 0, count * 90); yield return new WaitForFixedUpdate(); }
-        
-        //Kleide den Spieler und dessen Companion zurück:
-        Transform parent_playerAcc = player.transform.GetChild(0).GetChild(0).GetChild(0);
-        //Transform parent_companionAcc = companion.transform.GetChild(0).GetChild(0).GetChild(0);
-
-        StartCoroutine(clothObj.DestroyCloths(parent_playerAcc));
-        yield return new WaitForSeconds(.2f);
-        //StartCoroutine(clothObj.DestroyCloths(parent_companionAcc));
-        yield return new WaitForSeconds(.9f);
-        //Füge Dektektivkleidung hinzu:
-        foreach (var cloth in playerAccessoir.accessoirs) { StartCoroutine(cloth.CreateCloth(parent_playerAcc)); yield return new WaitForFixedUpdate(); }
-        yield return new WaitForSeconds(.2f);
-        //foreach (var cloth in companionAccessoir.accessoirs) StartCoroutine(cloth.CreateCloth(parent_companionAcc));
-        yield return new WaitForSeconds(.9f);
-
-        yield return new WaitForEndOfFrame();
         transform.GetChild(0).gameObject.SetActive(false);
-        runGame = false;
-        running_game = false;
-        staticCam = false;
-        pauseMove = false;
-        cScript.target = player;
+        //*/
+        //Nehme KartoffelCounter raus:
+        for (float count = 1; count > 0; count -= Time.fixedDeltaTime)
+        {
+            potCountSprite.alpha = count;
+            yield return new WaitForFixedUpdate();
+        }
+        potCountSprite.gameObject.SetActive(false);
+
+        //Rotiere die Camera um 90°:
+        StartCoroutine(cScript.SetRotation(0, 2));
+        StartCoroutine(cScript.SetZoom(5, 2));
+        StartCoroutine(menu.SetMenuRotation(_isPortrait: false, changeTime: 2));
+        cScript.offset = Vector2.up;
+        yield return new WaitForSeconds(3);
+        cScript.aSrc.clip = gameMusic;
+        cScript.aSrc.loop = true;
+        cScript.aSrc.Play();
+
+
+        companion.GetComponent<FollowScript>().enabled = false;
+        yield return new WaitForSeconds(.1f);
+
+        anim_comp.SetBool("moving", true);
+        Vector3 posStep = Mathf.Sign(companion.transform.position.x - player.transform.position.x) * .1f * Vector3.right;
+        while (Mathf.Abs(player.transform.position.x - companion.transform.position.x) < 5)
+        {
+            companion.transform.position += posStep; 
+            yield return new WaitForFixedUpdate();
+        }
+        anim_comp.SetBool("moving", false);
+
+        anim_comp.Play("Squeesh");
+        speachBubble.Say("Gute Arbeit,\nWatson!", Bubbles.Normal, target: companion);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+        anim_comp.Play("lookFocused");
+        speachBubble.Say("Es war ein\ndreckiger Job", Bubbles.Normal, target: companion);
+        speachBubble.Say("Aber irgendwer\nmusste ihn halt\nmachen", Bubbles.Normal, target: companion);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+
+        anim_player.Play("lookFocused");
+        player.GetComponent<VoiceScript>().PlayMumble();
+        yield return new WaitForSeconds(1);
+
+        anim_comp.Play("Squeesh");
+        yield return new WaitForSeconds(.6f);
+        anim_comp.Play("lookPuzzled");
+        speachBubble.Say("Aber warum wurden\ndie Kartoffeln\n überhaupt wieder\nvergraben?", Bubbles.Normal, target: companion);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+
+        anim_player.Play("lookPuzzled");
+        player.GetComponent<VoiceScript>().PlayQuestion();
+        yield return new WaitForSeconds(1);
+
+        anim_comp.Play("Squeesh");
+        GameObject bulb = transform.GetChild(2).gameObject;
+        bulb.SetActive(true);
+        bulb.transform.position = companion.transform.position + Vector3.down;
+        bulb.GetComponent<Animator>().Play("Idea");
+        yield return new WaitForSeconds(1);
+        bulb.SetActive(false);
+
+        anim_player.Play("lookAnnoyed");
+        speachBubble.Say("Es müssen Piraten\ngewesen sein!", Bubbles.Normal, target: companion);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+
+        player.GetComponent<VoiceScript>().PlayName();
+        yield return new WaitForSeconds(1);
+
+        anim_comp.Play("lookPuzzled");
+        speachBubble.Say("Wenn Du das Unmögliche\nausgeschlossen hast,\ndann ist das,\nwas übrig bleibt,", Bubbles.Normal, target: companion);
+        speachBubble.Say("die Wahrheit,\nwie unwahrscheinlich\nsie auch ist.", Bubbles.Normal, target: companion);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+        anim_comp.Play("lookAngry");
+        speachBubble.Say("Und nur Piraten\nvergraben ihre Beute", Bubbles.Shouting, fontSize: 30);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+        anim_comp.Play("lookNormal");
+        speachBubble.Say("Wie auch immer", Bubbles.Normal, target: companion);
+        speachBubble.Say("Lass uns erstmal\ndie Kartoffeln\nzum Lagerhaus\nzurück bringen", Bubbles.Normal, target: companion);
+        yield return new WaitUntil(() => !speachBubble.finished);
+        yield return new WaitUntil(() => speachBubble.finished);
+
+        anim_player.Play("Squeesh");
+        player.GetComponent<VoiceScript>().PlayShout();
+        yield return new WaitForSeconds(1);
+        //*/
+        menu.SetTransition(transition);
+        menu.DoTransition(1, 1, false);
+        Instantiate(nextSeq, Vector3.zero, Quaternion.identity).transform.parent = transform;
+
+        anim_comp.SetBool("moving", true);
+        anim_player.SetBool("moving", true);
+        anim_comp.SetTrigger("startMove");
+        anim_player.SetTrigger("startMove");
+        posStep = Vector3.right * .1f;
+        for(float count = 0; count < 2; count+= Time.fixedDeltaTime)
+        {
+            player.transform.position += posStep;
+            companion.transform.position += posStep;
+            yield return new WaitForFixedUpdate();
+        }
+        yield return new WaitForSeconds(2.5f);
+        Destroy(this);
+        yield break;
+    }
+
+    IEnumerator MoveCompanion()
+    {
+        float moveSpeed = 0.05f * Mathf.Sign(232 - companion.transform.position.x);
+        while (Mathf.Abs(companion.transform.position.x - 232) > Mathf.Abs(moveSpeed))
+        {
+            companion.transform.position += Vector3.right * moveSpeed;
+            yield return new WaitForFixedUpdate();
+        }
+
+        companion.transform.GetChild(0).GetComponent<Animator>().SetBool("moving", false);
         yield break;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.GetComponent<TouchSensor>().tipped || runGame || other.gameObject.layer != 14/*Touch*/) return;
-        staticCam = true;
-        pauseMove = true;
-        cScript.target = gameObject;
-        cScript.offset = Vector2.zero;
-        cScript.transform.rotation = Quaternion.identity;
+        if (!other.GetComponent<TouchSensor>().tipped || runGame || pauseGame || other.gameObject.layer != 14/*Touch*/) return;
+
         StartCoroutine(RunIntroSequence());
     }
 

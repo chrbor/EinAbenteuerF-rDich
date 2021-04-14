@@ -1,0 +1,667 @@
+fileFormatVersion: 2
+guid: d919420e28bbcc1408350d0f6ddda018
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5615977606089845938
+    second: girlande1
+  - first:
+      213: -5781817544511641881
+    second: present1
+  - first:
+      213: 7107431324946548844
+    second: girlande2
+  - first:
+      213: 1141047658654082567
+    second: present2
+  - first:
+      213: -931755404889896740
+    second: girlande3
+  - first:
+      213: -6204376412850266774
+    second: balloon1
+  - first:
+      213: 5488522722443186821
+    second: balloon2
+  - first:
+      213: 4693216485250729807
+    second: balloon3
+  - first:
+      213: -7471567602196677739
+    second: ballon4
+  - first:
+      213: -383241744982865287
+    second: balloon5
+  - first:
+      213: -324870028558822850
+    second: balloon6
+  - first:
+      213: -3219666530227188038
+    second: pole1
+  - first:
+      213: 4639603183442863772
+    second: pole2
+  - first:
+      213: 3830685744054492462
+    second: pole3
+  - first:
+      213: -2418318141439817544
+    second: pole4
+  - first:
+      213: -7353627850538107986
+    second: present3
+  - first:
+      213: -4199398961178835000
+    second: present4
+  - first:
+      213: 1190522234238172023
+    second: present5
+  - first:
+      213: -4673585610056894244
+    second: presentMon2
+  - first:
+      213: -5110705766319765860
+    second: present6
+  - first:
+      213: -8377521861702612459
+    second: giftBow
+  - first:
+      213: 8895920075297829323
+    second: presentMon1
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: girlande1
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 1685
+        width: 853
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e43577a3f1a0012b0800000000000000
+      internalID: -5615977606089845938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: present1
+      rect:
+        serializedVersion: 2
+        x: 974
+        y: 1638
+        width: 202
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e6234f939bd2cfa0800000000000000
+      internalID: -5781817544511641881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlande2
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 1508
+        width: 871
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c684cec122ba2a260800000000000000
+      internalID: 7107431324946548844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: present2
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 1322
+        width: 193
+        height: 249
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7062eddccc0d5df00800000000000000
+      internalID: 1141047658654082567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlande3
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 1240
+        width: 932
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd8ccf9556db113f0800000000000000
+      internalID: -931755404889896740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: balloon1
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 705
+        width: 124
+        height: 492
+      alignment: 9
+      pivot: {x: 0.47058672, y: 0.01339548}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6d5f335680a5e9a0800000000000000
+      internalID: -6204376412850266774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: balloon2
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 671
+        width: 133
+        height: 518
+      alignment: 9
+      pivot: {x: 0.42088044, y: 0.006911701}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 582d2ec26562b2c40800000000000000
+      internalID: 5488522722443186821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: balloon3
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 651
+        width: 69
+        height: 547
+      alignment: 9
+      pivot: {x: 0.5831852, y: 0.00856947}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4780611787a12140800000000000000
+      internalID: 4693216485250729807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ballon4
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 656
+        width: 110
+        height: 509
+      alignment: 9
+      pivot: {x: 0.5347867, y: 0.007590303}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59bffb31ad8af4890800000000000000
+      internalID: -7471567602196677739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: balloon5
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 666
+        width: 75
+        height: 519
+      alignment: 9
+      pivot: {x: 0.50000083, y: 0.011548228}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97a0237d9a37eaaf0800000000000000
+      internalID: -383241744982865287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: balloon6
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 673
+        width: 127
+        height: 486
+      alignment: 9
+      pivot: {x: 0.5075328, y: 0.005938997}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3294952e64dd7bf0800000000000000
+      internalID: -324870028558822850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pole1
+      rect:
+        serializedVersion: 2
+        x: 891
+        y: 504
+        width: 44
+        height: 694
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abe089a69527153d0800000000000000
+      internalID: -3219666530227188038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pole2
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 500
+        width: 48
+        height: 698
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9622ef738e236040800000000000000
+      internalID: 4639603183442863772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pole3
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 498
+        width: 59
+        height: 699
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2d558c6364592530800000000000000
+      internalID: 3830685744054492462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pole4
+      rect:
+        serializedVersion: 2
+        x: 1134
+        y: 502
+        width: 60
+        height: 710
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b8c8919678607ed0800000000000000
+      internalID: -2418318141439817544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: present3
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 398
+        width: 178
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eabb14e5e6aa2f990800000000000000
+      internalID: -7353627850538107986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: present4
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 374
+        width: 203
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c78ac8e4ecb8b5c0800000000000000
+      internalID: -4199398961178835000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: present5
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 384
+        width: 170
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77b78f41aa5958010800000000000000
+      internalID: 1190522234238172023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: presentMon2
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 294
+        width: 201
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd87e2d36a6142fb0800000000000000
+      internalID: -4673585610056894244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: present6
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 51
+        width: 320
+        height: 276
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9648f6ee202319b0800000000000000
+      internalID: -5110705766319765860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: giftBow
+      rect:
+        serializedVersion: 2
+        x: 758
+        y: 26
+        width: 370
+        height: 279
+      alignment: 9
+      pivot: {x: 0.5218166, y: 0.7025239}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51a8527b0401dbb80800000000000000
+      internalID: -8377521861702612459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: presentMon1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 114
+        width: 186
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc1b4660d28a47b70800000000000000
+      internalID: 8895920075297829323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

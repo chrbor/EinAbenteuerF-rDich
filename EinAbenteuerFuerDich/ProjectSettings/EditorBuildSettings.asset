@@ -5,30 +5,45 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Scenes/Tests/AccelTest.unity
-    guid: a599389e040ab5e4fb20d4d7240f60b7
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/World.unity
+    path: Assets/Scenes/InGame/StartScreen.unity
+    guid: 2aa163ba5eb675346a165a7344dcf185
+  - enabled: 1
+    path: Assets/Scenes/InGame/VoiceScene.unity
+    guid: b43bbf8c02438634d8272e7593c1063f
+  - enabled: 1
+    path: Assets/Scenes/InGame/BoxGame.unity
+    guid: 20016602a4bd9774c994b276b4c2e96f
+  - enabled: 1
+    path: Assets/Scenes/InGame/MillDestruction.unity
+    guid: fee3832b13c08cf4c9e6c4d045dd7b06
+  - enabled: 1
+    path: Assets/Scenes/InGame/World.unity
     guid: 694841d98c0ae3146ad33349922d88d7
-  - enabled: 0
-    path: Assets/Scenes/Tests/KlopfTest.unity
-    guid: a038a0e54a6f9934294070d0c5b2508c
-  - enabled: 0
-    path: Assets/Scenes/SuperMarket.unity
-    guid: 285c683432436934a9e8a84c0548d5a8
-  - enabled: 0
-    path: Assets/Scenes/ChickenHunt.unity
+  - enabled: 1
+    path: Assets/Scenes/InGame/Home.unity
+    guid: 527f013d939a58b409def532454a8c42
+  - enabled: 1
+    path: Assets/Scenes/InGame/ChickenHunt.unity
     guid: 1dd454e282f829147aef3421777b1292
+  - enabled: 1
+    path: Assets/Scenes/InGame/KlopfTest.unity
+    guid: a038a0e54a6f9934294070d0c5b2508c
+  - enabled: 1
+    path: Assets/Scenes/InGame/SuperMarket.unity
+    guid: 285c683432436934a9e8a84c0548d5a8
+  - enabled: 1
+    path: Assets/Scenes/InGame/Death.unity
+    guid: 146bfbf36de20764abb66ecb22b7313b
+  - enabled: 1
+    path: Assets/Scenes/InGame/PreParty.unity
+    guid: 5df989bccf6199e4abcfacd1758a788b
+  - enabled: 1
+    path: Assets/Scenes/InGame/Party.unity
+    guid: aea162e9e3e7d844da4efd7e8212f7a3
+  - enabled: 1
+    path: Assets/Scenes/InGame/Credits.unity
+    guid: 5ddbe3e2866ceda48b63ab3af6e3f5e0
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c9c1fa5f1991ae345a1ea476012bbd98,
       type: 2}

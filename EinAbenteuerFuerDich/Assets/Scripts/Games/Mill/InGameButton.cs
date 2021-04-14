@@ -10,6 +10,7 @@ public class InGameButton : MonoBehaviour
     private int fingerID = -1;
     [HideInInspector]
     public bool active;
+    private bool released;
 
     private Animator anim;
     private AudioSource aSrc;
@@ -33,19 +34,35 @@ public class InGameButton : MonoBehaviour
     {
         if (fingerID != -1 || !active) return;
         fingerID = other.GetComponent<TouchSensor>().fingerID;
-        ButtonPressed.Invoke();
-        anim.Play("GreenPulse", 0);
-        StartCoroutine(PlayShock());
+
+        if (!released)
+        {
+            ButtonPressed.Invoke();
+            anim.Play("GreenPulse", 0);
+            StartCoroutine(PlayShock());
+        }
+        released = false;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (fingerID != other.GetComponent<TouchSensor>().fingerID || !active) return;
+        fingerID = -1;
+        StartCoroutine(ConfirmRelease());
+    }
+
+    IEnumerator ConfirmRelease()
+    {
+        released = true;
+        yield return new WaitForSeconds(.1f);
+        if (!released) yield break;
+
         ButtonReleased.Invoke();
         aSrc.pitch = 1;
         aSrc.clip = error;
         aSrc.Play();
         anim.Play("RedShake", 0);
+        yield break;
     }
 
     IEnumerator PlayShock()

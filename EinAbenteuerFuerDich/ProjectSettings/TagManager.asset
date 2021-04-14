@@ -24,7 +24,7 @@ TagManager:
   - Interactable
   - Touch
   - PhysicsOnly
-  - 
+  - BrotherLayer
   - 
   - 
   - 
@@ -58,6 +58,9 @@ TagManager:
     locked: 0
   - name: Forground
     uniqueID: 2903483419
+    locked: 0
+  - name: Sillouettes
+    uniqueID: 2085823667
     locked: 0
   - name: UI
     uniqueID: 2983101871

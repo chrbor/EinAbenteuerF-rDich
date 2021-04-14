@@ -23,10 +23,12 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private bool isMoving;
+    [HideInInspector]
+    public float angle { get; private set; }
+
 
     private int mask = 1 << 12;//Ground
 
-    // Start is called before the first frame update
     void Awake()
     {
         player = gameObject;
@@ -37,7 +39,7 @@ public class PlayerScript : MonoBehaviour
         realVel = moveVeloctity * Time.fixedDeltaTime;
         jumpReady = true;
     }
-
+    
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -45,7 +47,7 @@ public class PlayerScript : MonoBehaviour
         isMoving = false;
         if(Input.gyro.gravity.y > -0.2f) { if(!staticCam) Camera.main.transform.rotation = Quaternion.identity; return; }
 
-        float angle = Mathf.Atan(Input.gyro.gravity.x / -Input.gyro.gravity.y) * Mathf.Rad2Deg;
+        angle = Mathf.Atan(Input.gyro.gravity.x / -Input.gyro.gravity.y) * Mathf.Rad2Deg;
         if (Mathf.Abs(angle) > thresh_maxAngle) angle = Mathf.Sign(angle) * thresh_maxAngle;
 
         float moveStrength = angle / 90;
@@ -74,7 +76,7 @@ public class PlayerScript : MonoBehaviour
             rb.AddForce(Vector2.up * (Input.gyro.userAcceleration.z > thresh_jump_max ? thresh_jump_max : Input.gyro.userAcceleration.z) * jumpStrength);
             anim.SetTrigger("jump");
         }
-        if(!staticCam) anim.SetBool("moving", isMoving);
+        anim.SetBool("moving", isMoving && !pauseMove);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
